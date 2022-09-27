@@ -63,12 +63,7 @@ class SmallListItemView extends StatelessWidget {
                             textAlign: TextAlign.left,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
-                            style: const TextStyle(
-                              color: AppColors.black3,
-                              fontFamily: AppFontFamilies.matter,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
+                            style: AppTextStyles.matterBlack3s14h100w600,
                           ),
                           Row(
                             children: [
@@ -77,23 +72,13 @@ class SmallListItemView extends StatelessWidget {
                                 child: Text(
                                   country ?? '',
                                   textAlign: TextAlign.left,
-                                  style: const TextStyle(
-                                    color: AppColors.black3,
-                                    fontFamily: AppFontFamilies.matter,
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                  style: AppTextStyles.matterBlack3s10h100w500,
                                 ),
                               ),
                               Text(
                                 date ?? '',
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
-                                  color: AppColors.black3,
-                                  fontFamily: AppFontFamilies.matter,
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                                style: AppTextStyles.matterBlack3s10h100w500,
                               )
                             ],
                           )

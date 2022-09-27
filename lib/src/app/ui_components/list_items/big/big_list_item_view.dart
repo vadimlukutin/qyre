@@ -42,13 +42,7 @@ class BigListItemView extends StatelessWidget {
                 Text(
                   title ?? '',
                   textAlign: TextAlign.left,
-                  style: const TextStyle(
-                    color: AppColors.black3,
-                    fontFamily: AppFontFamilies.matter,
-                    fontSize: 16,
-                    height: 1.2,
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: AppTextStyles.matterBlack3s16h120w700,
                 ),
                 LinearProgressIndicator(
                   value: value,
@@ -64,13 +58,7 @@ class BigListItemView extends StatelessWidget {
                       child: Text(
                         moreTitle ?? '',
                         textAlign: TextAlign.left,
-                        style: const TextStyle(
-                          color: AppColors.black1,
-                          fontFamily: AppFontFamilies.matter,
-                          height: 1.2,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
+                        style: AppTextStyles.matterBlack1s14h120w500,
                       ),
                     ),
                     SvgPicture.asset(

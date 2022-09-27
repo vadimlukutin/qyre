@@ -109,22 +109,12 @@ class ProfileSubItemView extends StatelessWidget {
                       Text(
                         title,
                         textAlign: TextAlign.left,
-                        style: const TextStyle(
-                          color: AppColors.white10,
-                          fontFamily: AppFontFamilies.matter,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700,
-                        ),
+                        style: AppTextStyles.matterWhite10s14h100w700,
                       ),
                       Text(
                         text,
                         textAlign: TextAlign.left,
-                        style: const TextStyle(
-                          color: AppColors.white10,
-                          fontFamily: AppFontFamilies.matter,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w500,
-                        ),
+                        style: AppTextStyles.matterWhite10s10h100w500,
                       )
                     ],
                   ),
