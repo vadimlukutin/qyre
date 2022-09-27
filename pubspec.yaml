@@ -39,6 +39,7 @@ dependencies:
   golden_toolkit: ^0.13.0
   freezed: ^2.1.1
   flutter_bloc: ^8.1.1
+  flutter_svg: ^1.1.5
 
 dev_dependencies:
   flutter_test:
@@ -97,33 +98,33 @@ flutter:
   fonts:
     - family: Matter
       fonts:
-        - asset: fonts/matter/Light.ttf
+        - asset: fonts/matter/Matter-Light.ttf
           weight: 300
-        - asset: fonts/matter/LightItalic.ttf
+        - asset: fonts/matter/Matter-LightItalic.ttf
           style: italic
           weight: 300
-        - asset: fonts/matter/Regular.ttf
+        - asset: fonts/matter/Matter-Regular.ttf
           weight: 400
-        - asset: fonts/matter/RegularItalic.ttf
+        - asset: fonts/matter/Matter-RegularItalic.ttf
           style: italic
           weight: 400
-        - asset: fonts/matter/Medium.ttf
+        - asset: fonts/matter/Matter-Medium.ttf
           weight: 500
-        - asset: fonts/matter/MediumItalic.ttf
+        - asset: fonts/matter/Matter-MediumItalic.ttf
           style: italic
           weight: 500
-        - asset: fonts/matter/SemiBold.ttf
+        - asset: fonts/matter/Matter-SemiBold.ttf
           weight: 600
-        - asset: fonts/matter/SemiBoldItalic.ttf
+        - asset: fonts/matter/Matter-SemiBoldItalic.ttf
           style: italic
           weight: 600
-        - asset: fonts/matter/Bold.ttf
+        - asset: fonts/matter/Matter-Bold.ttf
           weight: 700
-        - asset: fonts/matter/BoldItalic.ttf
+        - asset: fonts/matter/Matter-BoldItalic.ttf
           style: italic
           weight: 700
-        - asset: fonts/matter/ExtraBold.ttf
+        - asset: fonts/matter/Matter-ExtraBold.ttf
           weight: 800
-        - asset: fonts/matter/ExtraBoldItalic.ttf
+        - asset: fonts/matter/Matter-ExtraBoldItalic.ttf
           style: italic
           weight: 800
