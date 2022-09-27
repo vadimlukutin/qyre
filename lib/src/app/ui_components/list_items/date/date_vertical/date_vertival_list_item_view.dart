@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:qyre/src/app/extra/resources/colors.dart';
 import 'package:qyre/src/app/extra/resources/text_styles.dart';
+import 'package:qyre/src/app/ui_components/list_items/date/date_base.dart';
 
-enum DateItemIndicatorType { none, blue, red }
-
-class DateVerticalListItemView extends StatelessWidget {
-  final bool isToday;
-  final String? weekDay;
-  final String? month;
-  final String? day;
-  final DateItemIndicatorType type;
-
+class DateVerticalListItemView extends DateBaseListItemView {
   const DateVerticalListItemView({
-    this.isToday = false,
-    this.type = DateItemIndicatorType.none,
-    this.weekDay,
-    this.month,
-    this.day,
+    bool isToday = false,
+    DateItemIndicatorType type = DateItemIndicatorType.none,
+    String? weekDay,
+    String? month,
+    String? day,
     Key? key,
-  }) : super(key: key);
+  }) : super(
+          isToday: isToday,
+          type: type,
+          weekDay: weekDay,
+          month: month,
+          day: day,
+          key: key,
+        );
 
   @override
   Widget build(BuildContext context) {
     const borderRadius = 4.0;
     const width = 62.0;
-    const today = 'TODAY';
 
     return UnconstrainedBox(
       child: DecoratedBox(
@@ -43,7 +42,7 @@ class DateVerticalListItemView extends StatelessWidget {
                         const Padding(
                           padding: EdgeInsets.only(bottom: 4.0),
                           child: Text(
-                            today,
+                            DateBaseListItemView.today,
                             textAlign: TextAlign.center,
                             maxLines: 1,
                             style: AppTextStyles.matterGray6s10h100w600,
@@ -89,7 +88,7 @@ class DateVerticalListItemView extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 8.0),
                           child: DecoratedBox(
                             decoration: BoxDecoration(
-                              color: _getColorType(type) ?? AppColors.white10,
+                              color: getColorType(type) ?? AppColors.white10,
                               borderRadius: const BorderRadius.all(Radius.circular(borderRadius)),
                             ),
                             child: const SizedBox.square(
@@ -104,16 +103,5 @@ class DateVerticalListItemView extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Color? _getColorType(DateItemIndicatorType type) {
-    switch (type) {
-      case DateItemIndicatorType.blue:
-        return AppColors.blueFaded12;
-      case DateItemIndicatorType.red:
-        return AppColors.redBright18;
-      case DateItemIndicatorType.none:
-        return null;
-    }
   }
 }

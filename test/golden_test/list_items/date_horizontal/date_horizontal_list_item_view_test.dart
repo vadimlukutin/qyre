@@ -1,7 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
-import 'package:qyre/src/app/ui_components/list_items/date_horizontal/date_horizontal_list_item_view.dart';
+import 'package:qyre/src/app/ui_components/list_items/date/date_base.dart';
+import 'package:qyre/src/app/ui_components/list_items/date/date_horizontal/date_horizontal_list_item_view.dart';
 
 void main() {
   group('Vertical date list item view golden test group\'s', () {
