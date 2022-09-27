@@ -46,12 +46,7 @@ class DateVerticalListItemView extends StatelessWidget {
                             today,
                             textAlign: TextAlign.center,
                             maxLines: 1,
-                            style: TextStyle(
-                              color: AppColors.gray6,
-                              fontFamily: AppFontFamilies.matter,
-                              fontSize: 10,
-                              fontWeight: FontWeight.w600,
-                            ),
+                            style: AppTextStyles.matterGray6s10h100w600,
                           ),
                         )
                       ]
@@ -67,7 +62,7 @@ class DateVerticalListItemView extends StatelessWidget {
                         style: const TextStyle(
                           height: 1.3,
                           color: AppColors.white10,
-                          fontFamily: AppFontFamilies.matter,
+                          fontFamily: AppTextStyles.matter,
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
                         ),
@@ -76,25 +71,13 @@ class DateVerticalListItemView extends StatelessWidget {
                         month ?? '',
                         textAlign: TextAlign.center,
                         maxLines: 1,
-                        style: const TextStyle(
-                          height: 1.0,
-                          color: AppColors.white10,
-                          fontFamily: AppFontFamilies.matter,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w500,
-                        ),
+                        style: AppTextStyles.matterWhite10h100w500,
                       ),
                       Text(
                         day ?? '',
                         textAlign: TextAlign.center,
                         maxLines: 1,
-                        style: const TextStyle(
-                          height: 1.2,
-                          color: AppColors.white10,
-                          fontFamily: AppFontFamilies.matter,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                        ),
+                        style: AppTextStyles.matterWhite10s16h120w700,
                       ),
                     ],
                   ),
