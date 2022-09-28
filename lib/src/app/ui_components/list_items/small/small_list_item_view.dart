@@ -72,13 +72,13 @@ class SmallListItemView extends StatelessWidget {
                                 child: Text(
                                   country ?? '',
                                   textAlign: TextAlign.left,
-                                  style: AppTextStyles.matterBlack3s10h100w500,
+                                  style: AppTextStyles.matterBlack5s10h100w500,
                                 ),
                               ),
                               Text(
                                 date ?? '',
                                 textAlign: TextAlign.left,
-                                style: AppTextStyles.matterBlack3s10h100w500,
+                                style: AppTextStyles.matterBlack5s10h100w500,
                               )
                             ],
                           )

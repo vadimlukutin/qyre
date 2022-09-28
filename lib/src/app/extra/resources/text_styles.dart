@@ -4,6 +4,14 @@ import 'package:qyre/src/app/extra/resources/colors.dart';
 class AppTextStyles {
   static const matter = 'Matter';
 
+  static const matterBlack1s14h120w500 = TextStyle(
+    color: AppColors.black1,
+    fontFamily: AppTextStyles.matter,
+    height: 1.2,
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+  );
+
   static const matterBlack3s16h120w700 = TextStyle(
     color: AppColors.black3,
     fontFamily: AppTextStyles.matter,
@@ -12,12 +20,12 @@ class AppTextStyles {
     fontWeight: FontWeight.w700,
   );
 
-  static const matterBlack1s14h120w500 = TextStyle(
-    color: AppColors.black1,
+  static const matterBlack3s16h120w600 = TextStyle(
+    color: AppColors.black3,
     fontFamily: AppTextStyles.matter,
+    fontSize: 16,
     height: 1.2,
-    fontSize: 14,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w600,
   );
 
   static const matterWhite10s10h100w500 = TextStyle(
@@ -85,6 +93,29 @@ class AppTextStyles {
     color: AppColors.black3,
     fontFamily: AppTextStyles.matter,
     fontSize: 10,
+    fontWeight: FontWeight.w500,
+  );
+
+  static const matterBlack5s10h100w500 = TextStyle(
+    color: AppColors.black5,
+    fontFamily: AppTextStyles.matter,
+    fontSize: 10,
+    fontWeight: FontWeight.w500,
+  );
+
+  static const matterBlack5s12h130w500 = TextStyle(
+    height: 1.3,
+    color: AppColors.black5,
+    fontFamily: AppTextStyles.matter,
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+  );
+
+  static const matterBlack5s15h130w500 = TextStyle(
+    height: 1.3,
+    color: AppColors.black5,
+    fontFamily: AppTextStyles.matter,
+    fontSize: 15,
     fontWeight: FontWeight.w500,
   );
 
