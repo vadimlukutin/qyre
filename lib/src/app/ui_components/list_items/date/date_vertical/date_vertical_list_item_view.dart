@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:qyre/src/app/ui_kit//list_items/date/date_base.dart';
-import 'package:qyre/src/app/ui_kit/list_items/date/date_horizontal/date_horizontal_list_item_widget.dart';
+import 'package:qyre/src/app/ui_kit/list_items/date/date_base.dart';
+import 'package:qyre/src/app/ui_kit/list_items/date/date_vertical/date_vertical_list_item_widget.dart';
 
-class DateHorizontalListItemView extends DateBaseListItemWidget {
-  const DateHorizontalListItemView({
+class DateVerticalListItemView extends DateBaseListItemWidget {
+  const DateVerticalListItemView({
     bool isToday = false,
     DateItemIndicatorType type = DateItemIndicatorType.none,
     String? weekDay,
@@ -21,13 +21,12 @@ class DateHorizontalListItemView extends DateBaseListItemWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DateHorizontalListItemWidget(
+    return DateVerticalListItemWidget(
       isToday: isToday,
       type: type,
       weekDay: weekDay,
       month: month,
       day: day,
     );
-    ;
   }
 }

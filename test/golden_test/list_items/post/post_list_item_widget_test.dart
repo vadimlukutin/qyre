@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
-import 'package:qyre/src/app/ui_components/list_items/post/post_list_item_view.dart';
+import 'package:qyre/src/app/ui_kit/list_items/post/post_list_item_widget.dart';
 
 void main() {
-  group('Post list item view golden test group\'s', () {
-    testGoldens('Post list item view golden test', (tester) async {
+  group('Post list item widget golden test group\'s', () {
+    testGoldens('Post list item widget golden test', (tester) async {
       await loadAppFonts();
       await tester.pumpWidgetBuilder(
         const ColoredBox(
           color: Colors.black,
-          child: PostListItemView(
+          child: PostListItemWidget(
             title: 'Qyre US Production',
             subtitle: 'Updated privileges for current',
             date: '1 day ago',
@@ -22,7 +21,7 @@ void main() {
         wrapper: materialAppWrapper(platform: TargetPlatform.iOS),
         surfaceSize: const Size(358.0, 144.0),
       );
-      await screenMatchesGolden(tester, 'post_list_item_view', autoHeight: true);
+      await screenMatchesGolden(tester, 'post_list_item_widget', autoHeight: true);
     });
   });
 }

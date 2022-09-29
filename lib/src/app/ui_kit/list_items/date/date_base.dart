@@ -3,7 +3,7 @@ import 'package:qyre/src/app/extra/resources/colors.dart';
 
 enum DateItemIndicatorType { none, blue, red }
 
-abstract class DateBaseListItemView extends StatelessWidget {
+abstract class DateBaseListItemWidget extends StatelessWidget {
   final bool isToday;
   final String? weekDay;
   final String? month;
@@ -12,7 +12,7 @@ abstract class DateBaseListItemView extends StatelessWidget {
 
   static const today = 'TODAY';
 
-  const DateBaseListItemView({
+  const DateBaseListItemWidget({
     this.isToday = false,
     this.type = DateItemIndicatorType.none,
     this.weekDay,

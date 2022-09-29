@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:qyre/src/app/extra/resources/colors.dart';
 import 'package:qyre/src/app/extra/resources/text_styles.dart';
-import 'package:qyre/src/app/ui_components/list_items/date/date_base.dart';
+import 'package:qyre/src/app/ui_kit/list_items/date/date_base.dart';
 
-class DateVerticalListItemView extends DateBaseListItemView {
-  const DateVerticalListItemView({
+class DateVerticalListItemWidget extends DateBaseListItemWidget {
+  const DateVerticalListItemWidget({
     bool isToday = false,
     DateItemIndicatorType type = DateItemIndicatorType.none,
     String? weekDay,
@@ -42,7 +42,7 @@ class DateVerticalListItemView extends DateBaseListItemView {
                         const Padding(
                           padding: EdgeInsets.only(bottom: 4.0),
                           child: Text(
-                            DateBaseListItemView.today,
+                            DateBaseListItemWidget.today,
                             textAlign: TextAlign.center,
                             maxLines: 1,
                             style: AppTextStyles.matterGray6s10h100w600,

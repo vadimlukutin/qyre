@@ -1,12 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
-import 'package:qyre/src/app/ui_components/list_items/date/date_base.dart';
-import 'package:qyre/src/app/ui_components/list_items/date/date_horizontal/date_horizontal_list_item_view.dart';
+import 'package:qyre/src/app/ui_kit/list_items/date/date_base.dart';
+import 'package:qyre/src/app/ui_kit/list_items/date/date_horizontal/date_horizontal_list_item_widget.dart';
 
 void main() {
-  group('Vertical date list item view golden test group\'s', () {
-    testGoldens('Vertical date list item view golden test', (tester) async {
+  group('Horizontal date list item widget golden test group\'s', () {
+    testGoldens('Horizontal date list item widget golden test', (tester) async {
       const day = '18';
       const month = 'Oct.';
       const weekDay = 'Mon';
@@ -14,7 +14,7 @@ void main() {
 
       await loadAppFonts();
       await tester.pumpWidgetBuilder(
-        const DateHorizontalListItemView(
+        const DateHorizontalListItemWidget(
           isToday: true,
           day: day,
           month: month,
@@ -24,10 +24,10 @@ void main() {
         wrapper: materialAppWrapper(platform: TargetPlatform.iOS),
         surfaceSize: const Size(75.0, surfaceHeight),
       );
-      await screenMatchesGolden(tester, 'date_horizontal_list_item_view_today', autoHeight: true);
+      await screenMatchesGolden(tester, 'date_horizontal_list_item_widget_today', autoHeight: true);
 
       await tester.pumpWidgetBuilder(
-        const DateHorizontalListItemView(
+        const DateHorizontalListItemWidget(
           day: day,
           month: month,
           weekDay: weekDay,
@@ -36,11 +36,11 @@ void main() {
         wrapper: materialAppWrapper(platform: TargetPlatform.iOS),
         surfaceSize: const Size(58.0, surfaceHeight),
       );
-      await screenMatchesGolden(tester, 'date_horizontal_list_item_view_red_type',
+      await screenMatchesGolden(tester, 'date_horizontal_list_item_widget_red_type',
           autoHeight: true);
 
       await tester.pumpWidgetBuilder(
-        const DateHorizontalListItemView(
+        const DateHorizontalListItemWidget(
           day: day,
           month: month,
           weekDay: weekDay,
@@ -49,11 +49,11 @@ void main() {
         wrapper: materialAppWrapper(platform: TargetPlatform.iOS),
         surfaceSize: const Size(58.0, surfaceHeight),
       );
-      await screenMatchesGolden(tester, 'date_horizontal_list_item_view_blue_type',
+      await screenMatchesGolden(tester, 'date_horizontal_list_item_widget_blue_type',
           autoHeight: true);
 
       await tester.pumpWidgetBuilder(
-        const DateHorizontalListItemView(
+        const DateHorizontalListItemWidget(
           day: day,
           month: month,
           weekDay: weekDay,
@@ -61,7 +61,7 @@ void main() {
         wrapper: materialAppWrapper(platform: TargetPlatform.iOS),
         surfaceSize: const Size(48.0, surfaceHeight),
       );
-      await screenMatchesGolden(tester, 'date_horizontal_list_item_view_none_type',
+      await screenMatchesGolden(tester, 'date_horizontal_list_item_widget_none_type',
           autoHeight: true);
     });
   });

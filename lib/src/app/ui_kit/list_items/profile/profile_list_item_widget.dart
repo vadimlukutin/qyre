@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:qyre/generated/assets.dart';
 import 'package:qyre/src/app/extra/resources/colors.dart';
 import 'package:qyre/src/app/extra/resources/text_styles.dart';
-import 'package:qyre/src/app/ui_components/base/vertical_list_item/base_list_item_widget.dart';
-import 'package:qyre/src/app/ui_kit/list_items/profile/profile_list_item_widget.dart';
 
-class ProfileListItemView extends BaseVerticalListItemWidget {
+class ProfileListItemWidget extends StatelessWidget {
   final GestureTapCallback? onMyNetworkTap;
   final GestureTapCallback? onQuickHireTap;
   final GestureTapCallback? onCvTap;
 
-  const ProfileListItemView({
+  const ProfileListItemWidget({
     this.onMyNetworkTap,
     this.onQuickHireTap,
     this.onCvTap,
@@ -18,11 +17,38 @@ class ProfileListItemView extends BaseVerticalListItemWidget {
   }) : super(key: key);
 
   @override
-  Widget buildItem(BuildContext context) {
-    return ProfileListItemWidget(
-      onMyNetworkTap: onMyNetworkTap,
-      onQuickHireTap: onQuickHireTap,
-      onCvTap: onCvTap,
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 140.0,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          ProfileSubItemView(
+            imagePath: Assets.iconsUsersCouple,
+            title: 'My network',
+            text: 'Connect and grow \nyour network',
+            beginGradientColor: AppColors.gradientBlue20b,
+            endGradientColor: AppColors.gradientBlue20e,
+            onTap: onMyNetworkTap,
+          ),
+          ProfileSubItemView(
+            imagePath: Assets.iconsQyre,
+            title: 'Quick hire',
+            text: 'Hire someone \nquickly today',
+            beginGradientColor: AppColors.gradientRed21b,
+            endGradientColor: AppColors.gradientRed21e,
+            onTap: onQuickHireTap,
+          ),
+          ProfileSubItemView(
+            imagePath: Assets.iconsContract,
+            title: 'My CV',
+            text: 'Keep your CV \nupdated to get \nthe best offers',
+            beginGradientColor: AppColors.gradientPurple22b,
+            endGradientColor: AppColors.gradientPurple22e,
+            onTap: onCvTap,
+          ),
+        ],
+      ),
     );
   }
 }
@@ -51,10 +77,10 @@ class ProfileSubItemView extends StatelessWidget {
     const borderRadius = 4.0;
     const imageHeight = 32.0;
 
-    return GestureDetector(
-      onTap: onTap,
-      child: SizedBox(
-        width: itemWidth,
+    return SizedBox(
+      width: itemWidth,
+      child: GestureDetector(
+        onTap: onTap,
         child: DecoratedBox(
           decoration: BoxDecoration(
             gradient: LinearGradient(

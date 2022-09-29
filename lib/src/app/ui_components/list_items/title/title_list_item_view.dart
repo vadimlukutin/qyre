@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:qyre/src/app/extra/resources/text_styles.dart';
+import 'package:qyre/src/app/ui_components/base/vertical_list_item/base_list_item_widget.dart';
+import 'package:qyre/src/app/ui_kit/list_items/title/title_list_item_widget.dart';
 
-class TitleListItemView extends StatelessWidget {
+class TitleListItemView extends BaseVerticalListItemWidget {
   final String? text;
 
   const TitleListItemView({
@@ -10,17 +11,7 @@ class TitleListItemView extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 44.0,
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: Text(
-          text ?? '',
-          textAlign: TextAlign.left,
-          style: AppTextStyles.matterBlack3s18h100w600,
-        ),
-      ),
-    );
+  Widget buildItem(BuildContext context) {
+    return TitleListItemWidget(text: text);
   }
 }
