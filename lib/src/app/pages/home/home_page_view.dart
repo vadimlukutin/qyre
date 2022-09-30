@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:qyre/src/app/extra/resources/colors.dart';
+import 'package:qyre/src/app/pages/animated/animated_page_view.dart';
 import 'package:qyre/src/app/ui_components/list_items/big/big_list_item_view.dart';
 import 'package:qyre/src/app/ui_components/list_items/offer/offer_list_item_view.dart';
 import 'package:qyre/src/app/ui_components/list_items/post/post_list_item_view.dart';
 import 'package:qyre/src/app/ui_components/list_items/profile/profile_list_item_view.dart';
 import 'package:qyre/src/app/ui_components/list_items/small/small_list_item_view.dart';
 import 'package:qyre/src/app/ui_components/list_items/title/title_list_item_view.dart';
-import 'package:qyre/src/app/ui_components/navbars/custom/custom_navbar.dart';
 import 'package:qyre/src/app/ui_kit/list_items/date/date_base.dart';
-import 'package:qyre/src/app/ui_kit/list_items/date/date_horizontal/date_horizontal_list_item_widget.dart';
 import 'package:qyre/src/app/ui_kit/list_items/date/date_vertical/date_vertical_list_item_widget.dart';
 
 class HomePageView extends StatelessWidget {
@@ -59,28 +58,11 @@ class HomePageView extends StatelessWidget {
       ),
     ];
 
-    final headerCalendar = _getCalendarHeaderHorizontalList();
-
     return CupertinoPageScaffold(
       backgroundColor: AppColors.white10,
       child: SafeArea(
-        child: CustomScrollView(
-          shrinkWrap: true,
-          slivers: [
-            SliverPersistentHeader(
-              pinned: true,
-              floating: true,
-              delegate: CustomNavBar(title: 'Today\'s productions'),
-            ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                childCount: children.length,
-                (_, index) {
-                  return children[index];
-                },
-              ),
-            ),
-          ],
+        child: AnimatedPage(
+          children: children,
         ),
       ),
     );
@@ -179,80 +161,6 @@ class HomePageView extends StatelessWidget {
     ];
     return SizedBox(
       height: 111.0,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: children.length,
-        itemBuilder: (context, index) {
-          return children[index];
-        },
-        separatorBuilder: (context, index) {
-          if (index == 0 || index == children.length - 2) {
-            return const SizedBox.shrink();
-          }
-
-          return const SizedBox(width: 10.0);
-        },
-      ),
-    );
-  }
-
-  Widget _getCalendarHeaderHorizontalList() {
-    const day = '18';
-    const month = 'Oct';
-    const weekDay = 'Mon';
-
-    const children = [
-      SizedBox(width: 16.0),
-      DateHorizontalListItemWidget(
-        isToday: true,
-        day: day,
-        month: month,
-        weekDay: weekDay,
-        type: DateItemIndicatorType.red,
-      ),
-      DateHorizontalListItemWidget(
-        day: day,
-        month: month,
-        weekDay: weekDay,
-        type: DateItemIndicatorType.blue,
-      ),
-      DateHorizontalListItemWidget(
-        day: day,
-        month: month,
-        weekDay: weekDay,
-      ),
-      DateHorizontalListItemWidget(
-        day: day,
-        month: month,
-        weekDay: weekDay,
-      ),
-      DateHorizontalListItemWidget(
-        day: day,
-        month: month,
-        weekDay: weekDay,
-        type: DateItemIndicatorType.red,
-      ),
-      DateHorizontalListItemWidget(
-        day: day,
-        month: month,
-        weekDay: weekDay,
-        type: DateItemIndicatorType.blue,
-      ),
-      DateHorizontalListItemWidget(
-        day: day,
-        month: month,
-        weekDay: weekDay,
-        type: DateItemIndicatorType.red,
-      ),
-      DateHorizontalListItemWidget(
-        day: day,
-        month: month,
-        weekDay: weekDay,
-      ),
-      SizedBox(width: 16.0)
-    ];
-    return SizedBox(
-      height: 75.0,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: children.length,

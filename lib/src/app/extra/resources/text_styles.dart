@@ -125,4 +125,11 @@ class AppTextStyles {
     fontSize: 18,
     fontWeight: FontWeight.w600,
   );
+
+  static const matterBlack1s18h100w600 = TextStyle(
+    color: AppColors.black1,
+    fontFamily: AppTextStyles.matter,
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+  );
 }
