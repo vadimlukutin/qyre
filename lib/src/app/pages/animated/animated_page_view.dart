@@ -67,29 +67,52 @@ class _AnimatedPageState extends State<AnimatedPage> with TickerProviderStateMix
                 ),
               );
             }),
-        SliverList(delegate: SliverChildListDelegate(widget.children)),
+        SliverList(
+          delegate: SliverChildListDelegate(widget.children),
+        ),
       ],
     );
-  } // Listening for user scroll on screen.
+  }
 
   void _scrollListener() {
+    const duration = Duration(milliseconds: 200);
+    const curve = Curves.linear;
+    const delta = AnimatedPage.maxHeaderHeight - AnimatedPage.minHeaderHeight;
+
     if (_scrollController.offset - AnimatedPage.offsetHeight <=
         _scrollController.position.minScrollExtent) {
+      if (!_sliverCalendarHidden) {
+        return;
+      }
+
       setState(() {
         _sliverCalendarHidden = false;
         _maxExtentAnimation.animateTo(
           AnimatedPage.minHeaderHeight,
-          duration: const Duration(milliseconds: 200),
-          //curve: Curves.slowMiddle,
+          duration: duration,
+          curve: curve,
+        );
+        _scrollController.animateTo(
+          _scrollController.offset - AnimatedPage.offsetHeight,
+          duration: duration,
+          curve: curve,
         );
       });
     } else {
+      if (_sliverCalendarHidden) {
+        return;
+      }
       setState(() {
         _sliverCalendarHidden = true;
         _maxExtentAnimation.animateTo(
           AnimatedPage.maxHeaderHeight,
-          duration: const Duration(milliseconds: 200),
-          //curve: Curves.slowMiddle,
+          duration: duration,
+          curve: curve,
+        );
+        _scrollController.animateTo(
+          _scrollController.offset + delta,
+          duration: duration,
+          curve: curve,
         );
       });
     }
