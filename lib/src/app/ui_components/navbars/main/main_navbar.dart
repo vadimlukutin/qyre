@@ -6,7 +6,7 @@ import 'package:qyre/src/app/extra/resources/text_styles.dart';
 import 'package:qyre/src/app/ui_kit/list_items/date/date_base.dart';
 import 'package:qyre/src/app/ui_kit/list_items/date/date_horizontal/date_horizontal_list_item_widget.dart';
 
-class AnimatedHeaderDelegate extends SliverPersistentHeaderDelegate {
+class MainNavBarHeaderDelegate extends SliverPersistentHeaderDelegate {
   final String title;
   final bool isDisplayCalendar;
 
@@ -23,7 +23,7 @@ class AnimatedHeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
   TickerProvider? vsync;
 
-  AnimatedHeaderDelegate({
+  MainNavBarHeaderDelegate({
     this.title = '',
     this.isDisplayCalendar = false,
     this.minExtent = 70.0,
@@ -36,7 +36,7 @@ class AnimatedHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return AnimatedHeader(
+    return MainNavBarHeader(
       title: title,
       shrinkOffset: shrinkOffset,
       isDisplayCalendar: isDisplayCalendar,
@@ -44,13 +44,13 @@ class AnimatedHeaderDelegate extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  bool shouldRebuild(AnimatedHeaderDelegate oldDelegate) {
+  bool shouldRebuild(MainNavBarHeaderDelegate oldDelegate) {
     return false;
   }
 }
 
-class AnimatedHeader extends StatelessWidget {
-  const AnimatedHeader({
+class MainNavBarHeader extends StatelessWidget {
+  const MainNavBarHeader({
     key,
     required this.title,
     required this.shrinkOffset,
@@ -75,7 +75,7 @@ class AnimatedHeader extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 16.0,
-                vertical: 10.0,
+                vertical: 5.0,
               ),
               child: Align(
                   alignment: Alignment.bottomLeft,

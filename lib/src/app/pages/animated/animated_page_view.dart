@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
-import 'package:qyre/src/app/ui_components/navbars/custom/custom_navbar.dart';
+import 'package:qyre/src/app/ui_components/navbars/main/main_navbar.dart';
 
 class AnimatedPage extends StatefulWidget {
   final List<Widget> children;
   static const double offsetHeight = 111.0;
-  static const double minHeaderHeight = 100.0;
+  static const double minHeaderHeight = 75.0;
   static const double maxHeaderHeight = 130.0;
 
   const AnimatedPage({
@@ -24,8 +24,10 @@ class _AnimatedPageState extends State<AnimatedPage> with TickerProviderStateMix
   @override
   void initState() {
     super.initState();
-    _maxExtentAnimation =
-        AnimationController.unbounded(vsync: this, value: AnimatedPage.minHeaderHeight);
+    _maxExtentAnimation = AnimationController.unbounded(
+      vsync: this,
+      value: AnimatedPage.minHeaderHeight,
+    );
 
     _scrollController = ScrollController();
     _scrollController.addListener(_scrollListener);
@@ -38,14 +40,14 @@ class _AnimatedPageState extends State<AnimatedPage> with TickerProviderStateMix
     if (sliverCalendarHidden) {
       _maxExtentAnimation.animateTo(
         AnimatedPage.maxHeaderHeight,
-        duration: const Duration(milliseconds: 300000),
-        curve: Curves.bounceInOut,
+        duration: const Duration(milliseconds: 200),
+        //curve: Curves.slowMiddle,
       );
     } else {
       _maxExtentAnimation.animateTo(
         AnimatedPage.minHeaderHeight,
-        duration: const Duration(milliseconds: 300000),
-        curve: Curves.bounceInOut,
+        duration: const Duration(milliseconds: 200),
+        //curve: Curves.slowMiddle,
       );
     }
   }
@@ -58,7 +60,7 @@ class _AnimatedPageState extends State<AnimatedPage> with TickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
-    final headerHeaight =
+    final headerHeight =
         !sliverCalendarHidden ? AnimatedPage.minHeaderHeight : AnimatedPage.maxHeaderHeight;
 
     return CustomScrollView(
@@ -70,11 +72,11 @@ class _AnimatedPageState extends State<AnimatedPage> with TickerProviderStateMix
               return SliverPersistentHeader(
                 pinned: true,
                 floating: false,
-                delegate: AnimatedHeaderDelegate(
+                delegate: MainNavBarHeaderDelegate(
                   title: 'Today\'s productions',
                   isDisplayCalendar: sliverCalendarHidden,
-                  minExtent: headerHeaight,
-                  maxExtent: headerHeaight,
+                  minExtent: headerHeight,
+                  maxExtent: headerHeight,
                 ),
               );
             }),
