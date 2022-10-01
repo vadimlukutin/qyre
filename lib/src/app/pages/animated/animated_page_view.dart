@@ -92,11 +92,11 @@ class _AnimatedPageState extends State<AnimatedPage> with TickerProviderStateMix
           duration: duration,
           curve: curve,
         );
-        _scrollController.animateTo(
+/*        _scrollController.animateTo(
           _scrollController.offset - AnimatedPage.offsetHeight,
           duration: duration,
           curve: curve,
-        );
+        );*/
       });
     } else {
       if (_sliverCalendarHidden) {
@@ -104,16 +104,11 @@ class _AnimatedPageState extends State<AnimatedPage> with TickerProviderStateMix
       }
       setState(() {
         _sliverCalendarHidden = true;
-        _maxExtentAnimation.animateTo(
-          AnimatedPage.maxHeaderHeight,
-          duration: duration,
-          curve: curve,
-        );
-        _scrollController.animateTo(
+/*        _scrollController.animateTo(
           _scrollController.offset + delta,
           duration: duration,
           curve: curve,
-        );
+        );*/
       });
     }
   }
