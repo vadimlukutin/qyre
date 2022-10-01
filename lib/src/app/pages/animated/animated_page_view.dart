@@ -50,41 +50,45 @@ class _AnimatedPageState extends State<AnimatedPage> with TickerProviderStateMix
     final headerHeight =
         !_sliverCalendarHidden ? AnimatedPage.minHeaderHeight : AnimatedPage.maxHeaderHeight;
 
-    return CustomScrollView(
-      controller: _scrollController,
-      slivers: [
+    return Stack(
+      children: [
+        CustomScrollView(
+          controller: _scrollController,
+          slivers: [
+            SliverList(
+              delegate: SliverChildListDelegate([
+                ...[
+                  const SizedBox(
+                    height: AnimatedPage.minHeaderHeight,
+                  )
+                ],
+                ...widget.children
+              ]),
+            ),
+          ],
+        ),
         AnimatedBuilder(
-            animation: _maxExtentAnimation,
-            builder: (context, child) {
-              return SliverPersistentHeader(
-                pinned: true,
-                floating: false,
-                delegate: MainNavBarHeaderDelegate(
-                  title: 'Today\'s productions',
-                  isDisplayCalendar: _sliverCalendarHidden,
-                  minExtent: headerHeight,
-                  maxExtent: headerHeight,
-                ),
-              );
-            }),
-        SliverList(
-          delegate: SliverChildListDelegate(widget.children),
+          animation: _maxExtentAnimation,
+          builder: (context, child) {
+            return SizedBox(
+              height: headerHeight,
+              child: MainNavBarHeader(
+                title: 'Today\'s productions',
+                isDisplayCalendar: _sliverCalendarHidden,
+              ),
+            );
+          },
         ),
       ],
     );
   }
 
   void _scrollListener() {
-    const duration = Duration(milliseconds: 200);
-    const curve = Curves.linear;
-    //const delta = AnimatedPage.maxHeaderHeight - AnimatedPage.minHeaderHeight;
+    const duration = Duration(milliseconds: 500);
+    const curve = Curves.elasticOut;
 
     if (_scrollController.offset - AnimatedPage.offsetHeight <=
         _scrollController.position.minScrollExtent) {
-      if (!_sliverCalendarHidden) {
-        return;
-      }
-
       setState(() {
         _sliverCalendarHidden = false;
         _maxExtentAnimation.animateTo(
@@ -92,11 +96,6 @@ class _AnimatedPageState extends State<AnimatedPage> with TickerProviderStateMix
           duration: duration,
           curve: curve,
         );
-/*        _scrollController.animateTo(
-          _scrollController.offset - AnimatedPage.offsetHeight,
-          duration: duration,
-          curve: curve,
-        );*/
       });
     } else {
       if (_sliverCalendarHidden) {
@@ -104,11 +103,11 @@ class _AnimatedPageState extends State<AnimatedPage> with TickerProviderStateMix
       }
       setState(() {
         _sliverCalendarHidden = true;
-/*        _scrollController.animateTo(
-          _scrollController.offset + delta,
+        _maxExtentAnimation.animateTo(
+          AnimatedPage.maxHeaderHeight,
           duration: duration,
           curve: curve,
-        );*/
+        );
       });
     }
   }

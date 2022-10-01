@@ -1,63 +1,17 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:qyre/src/app/extra/resources/text_styles.dart';
 import 'package:qyre/src/app/ui_kit/list_items/date/date_base.dart';
 import 'package:qyre/src/app/ui_kit/list_items/date/date_horizontal/date_horizontal_list_item_widget.dart';
-
-class MainNavBarHeaderDelegate extends SliverPersistentHeaderDelegate {
-  final String title;
-  final bool isDisplayCalendar;
-
-  @override
-  final double minExtent;
-  @override
-  final double maxExtent;
-  @override
-  OverScrollHeaderStretchConfiguration? stretchConfiguration;
-  @override
-  PersistentHeaderShowOnScreenConfiguration? showOnScreenConfiguration;
-  @override
-  FloatingHeaderSnapConfiguration? snapConfiguration;
-  @override
-  TickerProvider? vsync;
-
-  MainNavBarHeaderDelegate({
-    this.title = '',
-    this.isDisplayCalendar = false,
-    this.minExtent = 70.0,
-    this.maxExtent = 100.0,
-    this.stretchConfiguration,
-    this.showOnScreenConfiguration,
-    this.snapConfiguration,
-    this.vsync,
-  });
-
-  @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return MainNavBarHeader(
-      title: title,
-      shrinkOffset: shrinkOffset,
-      isDisplayCalendar: isDisplayCalendar,
-    );
-  }
-
-  @override
-  bool shouldRebuild(MainNavBarHeaderDelegate oldDelegate) {
-    return false;
-  }
-}
 
 class MainNavBarHeader extends StatelessWidget {
   const MainNavBarHeader({
     key,
     required this.title,
-    required this.shrinkOffset,
     required this.isDisplayCalendar,
   }) : super(key: key);
 
-  final double shrinkOffset;
   final String title;
   final bool isDisplayCalendar;
 
