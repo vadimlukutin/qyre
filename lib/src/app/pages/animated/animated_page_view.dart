@@ -77,7 +77,7 @@ class _AnimatedPageState extends State<AnimatedPage> with TickerProviderStateMix
   void _scrollListener() {
     const duration = Duration(milliseconds: 200);
     const curve = Curves.linear;
-    const delta = AnimatedPage.maxHeaderHeight - AnimatedPage.minHeaderHeight;
+    //const delta = AnimatedPage.maxHeaderHeight - AnimatedPage.minHeaderHeight;
 
     if (_scrollController.offset - AnimatedPage.offsetHeight <=
         _scrollController.position.minScrollExtent) {
