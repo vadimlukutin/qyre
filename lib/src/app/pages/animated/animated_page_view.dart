@@ -20,7 +20,8 @@ class _AnimatedPageState extends State<AnimatedPage> with TickerProviderStateMix
   late AnimationController _maxExtentAnimation;
   late ScrollController _scrollController;
 
-  bool sliverCalendarHidden = false;
+  bool _sliverCalendarHidden = false;
+
   @override
   void initState() {
     super.initState();
@@ -36,20 +37,6 @@ class _AnimatedPageState extends State<AnimatedPage> with TickerProviderStateMix
   @override
   void didUpdateWidget(AnimatedPage oldWidget) {
     super.didUpdateWidget(oldWidget);
-
-    if (sliverCalendarHidden) {
-      _maxExtentAnimation.animateTo(
-        AnimatedPage.maxHeaderHeight,
-        duration: const Duration(milliseconds: 200),
-        //curve: Curves.slowMiddle,
-      );
-    } else {
-      _maxExtentAnimation.animateTo(
-        AnimatedPage.minHeaderHeight,
-        duration: const Duration(milliseconds: 200),
-        //curve: Curves.slowMiddle,
-      );
-    }
   }
 
   @override
@@ -61,7 +48,7 @@ class _AnimatedPageState extends State<AnimatedPage> with TickerProviderStateMix
   @override
   Widget build(BuildContext context) {
     final headerHeight =
-        !sliverCalendarHidden ? AnimatedPage.minHeaderHeight : AnimatedPage.maxHeaderHeight;
+        !_sliverCalendarHidden ? AnimatedPage.minHeaderHeight : AnimatedPage.maxHeaderHeight;
 
     return CustomScrollView(
       controller: _scrollController,
@@ -74,7 +61,7 @@ class _AnimatedPageState extends State<AnimatedPage> with TickerProviderStateMix
                 floating: false,
                 delegate: MainNavBarHeaderDelegate(
                   title: 'Today\'s productions',
-                  isDisplayCalendar: sliverCalendarHidden,
+                  isDisplayCalendar: _sliverCalendarHidden,
                   minExtent: headerHeight,
                   maxExtent: headerHeight,
                 ),
@@ -89,11 +76,21 @@ class _AnimatedPageState extends State<AnimatedPage> with TickerProviderStateMix
     if (_scrollController.offset - AnimatedPage.offsetHeight <=
         _scrollController.position.minScrollExtent) {
       setState(() {
-        sliverCalendarHidden = false;
+        _sliverCalendarHidden = false;
+        _maxExtentAnimation.animateTo(
+          AnimatedPage.minHeaderHeight,
+          duration: const Duration(milliseconds: 200),
+          //curve: Curves.slowMiddle,
+        );
       });
     } else {
       setState(() {
-        sliverCalendarHidden = true;
+        _sliverCalendarHidden = true;
+        _maxExtentAnimation.animateTo(
+          AnimatedPage.maxHeaderHeight,
+          duration: const Duration(milliseconds: 200),
+          //curve: Curves.slowMiddle,
+        );
       });
     }
   }
