@@ -31,7 +31,9 @@ class DateHorizontalListItemWidget extends DateBaseListItemWidget {
         child: DecoratedBox(
           decoration: const BoxDecoration(
             color: AppColors.black1,
-            borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
+            borderRadius: BorderRadius.all(
+              Radius.circular(borderRadius),
+            ),
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),

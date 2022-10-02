@@ -10,9 +10,12 @@ class MainNavBarHeader extends StatefulWidget {
   static const double minHeaderHeight = 75.0;
   static const double maxHeaderHeight = 130.0;
 
+  final ValueNotifier<bool> valueNotifier;
+
   const MainNavBarHeader({
     key,
     required this.title,
+    required this.valueNotifier,
   }) : super(key: key);
 
   final String title;
@@ -43,6 +46,8 @@ class MainNavBarHeaderState extends State<MainNavBarHeader> with TickerProviderS
   @override
   void didUpdateWidget(MainNavBarHeader oldWidget) {
     super.didUpdateWidget(oldWidget);
+
+    widget.valueNotifier.addListener(refresh);
   }
 
   @override
@@ -55,39 +60,52 @@ class MainNavBarHeaderState extends State<MainNavBarHeader> with TickerProviderS
 
   @override
   Widget build(BuildContext context) {
-    final height =
-        isDisplayCalendar ? MainNavBarHeader.maxHeaderHeight : MainNavBarHeader.minHeaderHeight;
+    isDisplayCalendar = widget.valueNotifier.value;
+
+    final calendar = AnimatedBuilder(
+      animation: _calendarAnimation,
+      child: _getCalendarHeaderHorizontalList(),
+      builder: (BuildContext context, Widget? child) {
+        return ClipRect(
+          child: SizedBox(
+            height: _calendarAnimation.value,
+            child: child,
+          ),
+        );
+      },
+    );
 
     return AnimatedBuilder(
       animation: _containerAnimation,
       child: SizedBox(
+        width: double.infinity,
         child: ClipRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(
               sigmaX: 7.0,
               sigmaY: 7.0,
             ),
-            child: SizedBox(
-              width: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 5.0,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 5.0,
+              ),
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: ClipRect(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.title,
+                        textAlign: TextAlign.left,
+                        style: AppTextStyles.matterBlack1s18h100w600,
+                      ),
+                      calendar
+                    ],
+                  ),
                 ),
-                child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          widget.title,
-                          textAlign: TextAlign.left,
-                          style: AppTextStyles.matterBlack1s18h100w600,
-                        ),
-                        ...isDisplayCalendar ? [_getCalendarHeaderHorizontalList()] : [],
-                      ],
-                    )),
               ),
             ),
           ),
@@ -95,52 +113,42 @@ class MainNavBarHeaderState extends State<MainNavBarHeader> with TickerProviderS
       ),
       builder: (BuildContext context, Widget? child) {
         return SizedBox(
-          height: height,
+          height: _containerAnimation.value == 0
+              ? MainNavBarHeader.minHeaderHeight
+              : _containerAnimation.value,
           child: child,
         );
       },
     );
   }
 
-  void refresh(bool isDisplayCalendar) {
-    const duration = Duration(milliseconds: 5000);
+  void refresh() {
+    const duration = Duration(milliseconds: 500);
     const curve = Curves.linear;
 
-    if (isDisplayCalendar == this.isDisplayCalendar) {
-      return;
-    }
-
-    this.isDisplayCalendar = isDisplayCalendar;
+    isDisplayCalendar = widget.valueNotifier.value;
 
     if (isDisplayCalendar) {
-      setState(
-        () {
-          _calendarAnimation.animateTo(
-            MainNavBarHeader.maxHeaderHeight,
-            duration: duration,
-            curve: curve,
-          );
-          _containerAnimation.animateTo(
-            MainNavBarHeader.maxHeaderHeight,
-            duration: duration,
-            curve: curve,
-          );
-        },
+      _containerAnimation.animateTo(
+        MainNavBarHeader.maxHeaderHeight,
+        duration: duration,
+        curve: curve,
+      );
+      _calendarAnimation.animateTo(
+        55.0,
+        duration: duration,
+        curve: curve,
       );
     } else {
-      setState(
-        () {
-          _calendarAnimation.animateTo(
-            MainNavBarHeader.minHeaderHeight,
-            duration: duration,
-            curve: curve,
-          );
-          _containerAnimation.animateTo(
-            MainNavBarHeader.minHeaderHeight,
-            duration: duration,
-            curve: curve,
-          );
-        },
+      _containerAnimation.animateTo(
+        MainNavBarHeader.minHeaderHeight,
+        duration: duration,
+        curve: curve,
+      );
+      _calendarAnimation.animateTo(
+        0.0,
+        duration: duration,
+        curve: curve,
       );
     }
   }
@@ -198,17 +206,20 @@ class MainNavBarHeaderState extends State<MainNavBarHeader> with TickerProviderS
         weekDay: weekDay,
       ),
     ];
-    return SizedBox(
-      height: 55.0,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: children.length,
-        itemBuilder: (context, index) {
-          return children[index];
-        },
-        separatorBuilder: (context, index) {
-          return const SizedBox(width: 10.0);
-        },
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: SizedBox(
+        height: 55.0,
+        child: ListView.separated(
+          scrollDirection: Axis.horizontal,
+          itemCount: children.length,
+          itemBuilder: (context, index) {
+            return children[index];
+          },
+          separatorBuilder: (context, index) {
+            return const SizedBox(width: 10.0);
+          },
+        ),
       ),
     );
   }

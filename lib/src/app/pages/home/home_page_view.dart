@@ -17,9 +17,9 @@ class HomePageView extends StatelessWidget {
     _scrollController.addListener(_scrollListener);
   }
 
-  final ScrollController _scrollController = ScrollController();
+  final ValueNotifier<bool> _isDisplayCalendar = ValueNotifier<bool>(false);
 
-  final GlobalKey<MainNavBarHeaderState> _key = GlobalKey();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -85,8 +85,8 @@ class HomePageView extends StatelessWidget {
               ],
             ),
             MainNavBarHeader(
-              key: _key,
               title: 'Today\'s productions',
+              valueNotifier: _isDisplayCalendar,
             ),
           ],
         ),
@@ -97,9 +97,11 @@ class HomePageView extends StatelessWidget {
   void _scrollListener() {
     if (_scrollController.offset - MainNavBarHeader.offsetHeight <=
         _scrollController.position.minScrollExtent) {
-      _key.currentState!.refresh(false);
+      //_key.currentState!.refresh(false);
+      _isDisplayCalendar.value = false;
     } else {
-      _key.currentState!.refresh(true);
+      //_key.currentState!.refresh(true);
+      _isDisplayCalendar.value = true;
     }
   }
 
