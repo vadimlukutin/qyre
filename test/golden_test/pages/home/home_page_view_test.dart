@@ -8,7 +8,7 @@ void main() {
     testGoldens('Profile list item view golden test', (tester) async {
       await loadAppFonts();
       await tester.pumpWidgetBuilder(
-        const HomePageView(),
+        HomePageView(),
         wrapper: materialAppWrapper(platform: TargetPlatform.iOS),
         surfaceSize: const Size(390.0, 1400.0),
       );

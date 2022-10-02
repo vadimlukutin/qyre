@@ -1,19 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:qyre/src/app/extra/resources/colors.dart';
-import 'package:qyre/src/app/pages/animated/animated_page_view.dart';
 import 'package:qyre/src/app/ui_components/list_items/big/big_list_item_view.dart';
 import 'package:qyre/src/app/ui_components/list_items/offer/offer_list_item_view.dart';
 import 'package:qyre/src/app/ui_components/list_items/post/post_list_item_view.dart';
 import 'package:qyre/src/app/ui_components/list_items/profile/profile_list_item_view.dart';
 import 'package:qyre/src/app/ui_components/list_items/small/small_list_item_view.dart';
 import 'package:qyre/src/app/ui_components/list_items/title/title_list_item_view.dart';
+import 'package:qyre/src/app/ui_components/navbars/main/main_navbar.dart';
 import 'package:qyre/src/app/ui_kit/list_items/date/date_base.dart';
 import 'package:qyre/src/app/ui_kit/list_items/date/date_vertical/date_vertical_list_item_widget.dart';
 
 class HomePageView extends StatelessWidget {
-  const HomePageView({
+  HomePageView({
     Key? key,
-  }) : super(key: key);
+  }) : super(key: key) {
+    _scrollController.addListener(_scrollListener);
+  }
+
+  final ScrollController _scrollController = ScrollController();
+
+  final GlobalKey<MainNavBarHeaderState> _key = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -61,11 +67,40 @@ class HomePageView extends StatelessWidget {
     return CupertinoPageScaffold(
       backgroundColor: AppColors.white10,
       child: SafeArea(
-        child: AnimatedPage(
-          children: children,
+        child: Stack(
+          children: [
+            CustomScrollView(
+              controller: _scrollController,
+              slivers: [
+                SliverList(
+                  delegate: SliverChildListDelegate([
+                    ...[
+                      const SizedBox(
+                        height: MainNavBarHeader.minHeaderHeight,
+                      )
+                    ],
+                    ...children
+                  ]),
+                ),
+              ],
+            ),
+            MainNavBarHeader(
+              key: _key,
+              title: 'Today\'s productions',
+            ),
+          ],
         ),
       ),
     );
+  }
+
+  void _scrollListener() {
+    if (_scrollController.offset - MainNavBarHeader.offsetHeight <=
+        _scrollController.position.minScrollExtent) {
+      _key.currentState!.refresh(false);
+    } else {
+      _key.currentState!.refresh(true);
+    }
   }
 
   Widget _getHorizontalList() {

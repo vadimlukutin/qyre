@@ -60,7 +60,7 @@ class MainCupertinoTabBar extends StatelessWidget {
           builder: (BuildContext context) {
             switch (index) {
               case 0:
-                return const HomePageView();
+                return HomePageView();
               default:
                 return DecoratedBox(
                   decoration: const BoxDecoration(
