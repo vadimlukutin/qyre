@@ -7,6 +7,7 @@ import 'package:qyre/src/app/ui_kit/list_items/date/date_horizontal/date_horizon
 
 class MainNavBarHeader extends StatefulWidget {
   static const double offsetHeight = 111.0;
+  static const double calendarHeight = 55.0;
   static const double minHeaderHeight = 75.0;
   static const double maxHeaderHeight = 130.0;
 
@@ -136,7 +137,7 @@ class MainNavBarHeaderState extends State<MainNavBarHeader> with TickerProviderS
         curve: curve,
       );
       _calendarAnimation.animateTo(
-        55.0,
+        MainNavBarHeader.calendarHeight,
         duration: duration,
         curve: curve,
       );
@@ -211,7 +212,7 @@ class MainNavBarHeaderState extends State<MainNavBarHeader> with TickerProviderS
       scrollDirection: Axis.vertical,
       reverse: true,
       child: SizedBox(
-        height: 55.0,
+        height: MainNavBarHeader.calendarHeight,
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
           itemCount: children.length,
