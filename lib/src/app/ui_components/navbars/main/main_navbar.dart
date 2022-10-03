@@ -92,7 +92,8 @@ class MainNavBarHeaderState extends State<MainNavBarHeader> with TickerProviderS
               ),
               child: Align(
                 alignment: Alignment.bottomLeft,
-                child: ClipRect(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -208,6 +209,7 @@ class MainNavBarHeaderState extends State<MainNavBarHeader> with TickerProviderS
     ];
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
+      reverse: true,
       child: SizedBox(
         height: 55.0,
         child: ListView.separated(
